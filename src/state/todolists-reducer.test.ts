@@ -1,32 +1,20 @@
-import { userReducer } from './user-reducer'
+import { todolistsReducer } from './todolists-reducer'
+import { v1 } from 'uuid'
+import { TodolistType } from '../App'
 
+test('correct todolist should be removed', () => {
+    let todolistId1 = v1()
+    let todolistId2 = v1()
 
-test('user reducer should increment only age', () => {
-    const startState = {age: 20, childrenCount: 2, name: 'Dimych'}
+    const startState: Array<TodolistType> = [
+        {id: todolistId1, title: 'What to learn', filter: 'all'},
+        {id: todolistId2, title: 'What to buy', filter: 'all'}
+    ]
 
-    const endState = userReducer(startState, {type: 'INCREMENT-AGE'})
+    const endState = todolistsReducer(startState, {type: 'REMOVE-TODOLIST', id: todolistId1})
 
-    expect(endState.age).toBe(21)
-    expect(endState.childrenCount).toBe(2)
+    expect(endState.length).toBe(1)
+    expect(endState[0].id).toBe(todolistId2)
 })
 
-
-test('user reducer should increment only childrenCount', () => {
-    const startState = {age: 20, childrenCount: 2, name: 'Dimych'}
-
-    const endState = userReducer(startState, {type: 'INCREMENT-CHILDREN-COUNT'})
-
-    expect(endState.childrenCount).toBe(3)
-    expect(endState.age).toBe(20)
-
-})
-
-
-test('user reducer should change name of user', () => {
-    const startState = {name: 'Dimych', age: 20, childrenCount: 2}
-    const newName = 'Viktor'
-    const endState = userReducer(startState, {type: 'CHANGE-NAME', newName: newName})
-
-    expect(endState.name).toBe(newName)
-})
 
