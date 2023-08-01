@@ -1,4 +1,5 @@
 import {TasksStateType} from "../App";
+import {v1} from "uuid";
 
 
 export type RemoveTaskActionType = {
@@ -7,17 +8,22 @@ export type RemoveTaskActionType = {
     taskId: string
 }
 
+export type addTaskActionType = {
+    type: 'ADD-TASK'
+    todolistId: string
+    title: string
+}
+
 
 type ActionType =
     RemoveTaskActionType
-
+    | addTaskActionType
 
 
 export const tasksReducer = (state: TasksStateType, action: ActionType): TasksStateType => {
     switch (action.type) {
         case 'REMOVE-TASK':
             return {...state, [action.todolistId]: state[action.todolistId].filter(el => el.id !== action.taskId)}
-       /* case 'ADD-TASK':*/
 
         default:
             throw new Error("I don't understand this type")
@@ -26,8 +32,10 @@ export const tasksReducer = (state: TasksStateType, action: ActionType): TasksSt
 
 
 export const removeTaskAC = (todolistId: string, taskId: string): RemoveTaskActionType => {
-    return {type: 'REMOVE-TASK', todolistId: todolistId, taskId: taskId }
+    return {type: 'REMOVE-TASK', todolistId: todolistId, taskId: taskId}
 }
+
+
 
 
 
