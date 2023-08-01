@@ -1,10 +1,12 @@
 import {TodolistType} from "../App";
 import {v1} from "uuid";
 
-type ActionType = {
-    type: string
-    [key: string]: any
+type RemoveTodolistActionType = {
+    type: 'REMOVE-TODOLIST'
+    id: string
 }
+
+type ActionType = RemoveTodolistActionType
 
 export const todolistsReducer = (state: TodolistType[], action: ActionType): TodolistType[] => {
     switch (action.type) {
