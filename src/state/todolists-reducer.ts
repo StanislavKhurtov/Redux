@@ -41,7 +41,7 @@ export const todolistsReducer = (state: TodolistType[], action: ActionType): Tod
         case 'CHANGE-TODOLIST-FILTER':
             return state.map(el => el.id === action.id ? {...el, filter: action.filter} : el)
         default:
-            throw new Error("I don't understand this type")
+            return state;
     }
 }
 
