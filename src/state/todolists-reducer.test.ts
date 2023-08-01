@@ -1,5 +1,5 @@
 import {
-    addTodolistAC,
+    addTodolistAC, changeTodolistFilterAC,
     ChangeTodolistFilterActionType,
     changeTodolistTitleAC,
     removeTodolistAC,
@@ -68,13 +68,7 @@ test('correct filter of todolist should be changed', () => {
         {id: todolistId2, title: 'What to buy', filter: 'all'}
     ]
 
-    const action: ChangeTodolistFilterActionType = {
-        type: 'CHANGE-TODOLIST-FILTER',
-        id: todolistId2,
-        filter: newFilter
-    }
-
-    const endState = todolistsReducer(startState, action)
+    const endState = todolistsReducer(startState, changeTodolistFilterAC(todolistId2,newFilter))
 
     expect(endState[0].filter).toBe('all')
     expect(endState[1].filter).toBe(newFilter)
