@@ -22,6 +22,7 @@ type TasksStateType = {
 
 export const App = () => {
 
+
     const removeTask = (todolistID: string, id: string) => {
         setTasks({...tasks, [todolistID]: tasks[todolistID].filter(el => el.id !== id)})
     };
@@ -38,8 +39,6 @@ export const App = () => {
     const changeStatus = (todolistID: string, taskId: string, isDone: boolean) => {
         setTasks({...tasks, [todolistID]: tasks[todolistID].map(el => el.id === taskId ? {...el, isDone: isDone} : el)})
     };
-
-
 
 
     const removeTodolist = (todolistId: string) => {
@@ -64,9 +63,9 @@ export const App = () => {
     };
 
 
-
     const todolistIs_1 = v1();
     const todolistIs_2 = v1();
+
 
     let [todolists, setTodolist] = useState<Array<TodolistType>>([
         {id: todolistIs_1, title: 'What to learn', filter: "all"},
