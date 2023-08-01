@@ -10,7 +10,11 @@ type AddTodolistActionType = {
     title: string
 }
 
-
+type ChangeTodolistTitleActionType = {
+    type: 'CHANGE-TODOLIST-TITLE'
+    id: string
+    filter: FilterValueType
+}
 
 
 type ActionType = RemoveTodolistActionType
