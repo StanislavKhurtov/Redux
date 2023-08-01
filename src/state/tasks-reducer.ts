@@ -24,7 +24,8 @@ export const tasksReducer = (state: TasksStateType, action: ActionType): TasksSt
     switch (action.type) {
         case 'REMOVE-TASK':
             return {...state, [action.todolistId]: state[action.todolistId].filter(el => el.id !== action.taskId)}
-
+        case 'ADD-TASK':
+            return {...state, [action.todolistId]: [{id: v1(), title: action.title, isDone: false}, ...state[action.todolistId]]}
         default:
             throw new Error("I don't understand this type")
     }
@@ -35,7 +36,9 @@ export const removeTaskAC = (todolistId: string, taskId: string): RemoveTaskActi
     return {type: 'REMOVE-TASK', todolistId: todolistId, taskId: taskId}
 }
 
-
+export const addTaskAC = (todolistId: string, title: string): addTaskActionType => {
+    return {type: 'ADD-TASK', todolistId: todolistId, title:title}
+}
 
 
 
