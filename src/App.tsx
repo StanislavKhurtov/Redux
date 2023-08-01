@@ -22,6 +22,29 @@ export type TasksStateType = {
 
 export const App = () => {
 
+    const todolistIs_1 = v1();
+    const todolistIs_2 = v1();
+
+    let [todolists, setTodolist] = useState<Array<TodolistType>>([
+        {id: todolistIs_1, title: 'What to learn', filter: "all"},
+        {id: todolistIs_2, title: 'What to buy', filter: "all"},
+    ]);
+
+    let [tasks, setTasks] = useState<TasksStateType>({
+        [todolistIs_1]: [
+            {id: v1(), title: 'HTML&CSS', isDone: true},
+            {id: v1(), title: 'JavaScript', isDone: true},
+            {id: v1(), title: 'React', isDone: false},
+            {id: v1(), title: 'TypeScript', isDone: false},
+            {id: v1(), title: 'Angular', isDone: false},
+
+        ],
+        [todolistIs_2]: [
+            {id: v1(), title: 'Book', isDone: true},
+            {id: v1(), title: 'Milk', isDone: true},
+        ],
+    })
+
 
     const removeTask = (todolistID: string, id: string) => {
         setTasks({...tasks, [todolistID]: tasks[todolistID].filter(el => el.id !== id)})
@@ -62,31 +85,6 @@ export const App = () => {
         setTodolist(todolists.map(el => el.id === todolistID ? {...el, filter: value} : el))
     };
 
-
-    const todolistIs_1 = v1();
-    const todolistIs_2 = v1();
-
-
-    let [todolists, setTodolist] = useState<Array<TodolistType>>([
-        {id: todolistIs_1, title: 'What to learn', filter: "all"},
-        {id: todolistIs_2, title: 'What to buy', filter: "all"},
-    ]);
-
-
-    let [tasks, setTasks] = useState<TasksStateType>({
-        [todolistIs_1]: [
-            {id: v1(), title: 'HTML&CSS', isDone: true},
-            {id: v1(), title: 'JavaScript', isDone: true},
-            {id: v1(), title: 'React', isDone: false},
-            {id: v1(), title: 'TypeScript', isDone: false},
-            {id: v1(), title: 'Angular', isDone: false},
-
-        ],
-        [todolistIs_2]: [
-            {id: v1(), title: 'Book', isDone: true},
-            {id: v1(), title: 'Milk', isDone: true},
-        ],
-    })
 
     return (
         <div className="App">
