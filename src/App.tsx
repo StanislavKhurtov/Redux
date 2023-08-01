@@ -55,12 +55,12 @@ export const App = () => {
         setTasks({...tasks, [newTodolist.id]: []})
     };
 
-    const changeFilter = (todolistID: string, value: FilterValueType) => {
-        setTodolist(todolists.map(el => el.id === todolistID ? {...el, filter: value} : el))
-    };
-
     const changeTodolistTitle = (todolistId: string, newTitle: string) => {
         setTodolist(todolists.map(el => el.id === todolistId ? {...el, title: newTitle} : el))
+    };
+
+    const changeFilter = (todolistID: string, value: FilterValueType) => {
+        setTodolist(todolists.map(el => el.id === todolistID ? {...el, filter: value} : el))
     };
 
 
