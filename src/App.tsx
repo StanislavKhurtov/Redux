@@ -22,10 +22,6 @@ type TasksStateType = {
 
 export const App = () => {
 
-    const changeStatus = (todolistID: string, taskId: string, isDone: boolean) => {
-        setTasks({...tasks, [todolistID]: tasks[todolistID].map(el => el.id === taskId ? {...el, isDone: isDone} : el)})
-    };
-
     const removeTask = (todolistID: string, id: string) => {
         setTasks({...tasks, [todolistID]: tasks[todolistID].filter(el => el.id !== id)})
     };
@@ -35,9 +31,16 @@ export const App = () => {
         setTasks({...tasks, [todolistID]: [newTask, ...tasks[todolistID]]})
     };
 
-    const changeFilter = (todolistID: string, value: FilterValueType) => {
-        setTodolist(todolists.map(el => el.id === todolistID ? {...el, filter: value} : el))
+    const changeTaskTitle = (todolistId: string, id: string, newValue: string) => {
+        setTasks({...tasks, [todolistId]: tasks[todolistId].map(el => el.id === id ? {...el, title: newValue} : el)})
     };
+
+    const changeStatus = (todolistID: string, taskId: string, isDone: boolean) => {
+        setTasks({...tasks, [todolistID]: tasks[todolistID].map(el => el.id === taskId ? {...el, isDone: isDone} : el)})
+    };
+
+
+
 
     const removeTodolist = (todolistId: string) => {
         setTodolist(todolists.filter(el => el.id !== todolistId));
@@ -52,13 +55,15 @@ export const App = () => {
         setTasks({...tasks, [newTodolist.id]: []})
     };
 
-    const changeTaskTitle = (todolistId: string, id: string, newValue: string) => {
-        setTasks({...tasks, [todolistId]: tasks[todolistId].map(el => el.id === id ? {...el, title: newValue} : el)})
+    const changeFilter = (todolistID: string, value: FilterValueType) => {
+        setTodolist(todolists.map(el => el.id === todolistID ? {...el, filter: value} : el))
     };
 
     const changeTodolistTitle = (todolistId: string, newTitle: string) => {
         setTodolist(todolists.map(el => el.id === todolistId ? {...el, title: newTitle} : el))
     };
+
+
 
     const todolistIs_1 = v1();
     const todolistIs_2 = v1();
