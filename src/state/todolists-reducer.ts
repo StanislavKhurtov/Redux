@@ -46,3 +46,8 @@ export const todolistsReducer = (state: TodolistType[], action: ActionType): Tod
             throw new Error("I don't understand this type")
     }
 }
+
+
+export const removeTodolistAC = (todolistId: string): RemoveTodolistActionType => {
+    return {type: 'REMOVE-TODOLIST', id: todolistId}
+}
