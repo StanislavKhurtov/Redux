@@ -37,7 +37,7 @@ type ActionType =
     | AddTodolistActionType
     | RemoveTodolistActionType;
 
-const initialState: TasksStateType ={};
+const initialState: TasksStateType = {};
 
 export const tasksReducer = (state: TasksStateType = initialState, action: ActionType): TasksStateType => {
     switch (action.type) {
