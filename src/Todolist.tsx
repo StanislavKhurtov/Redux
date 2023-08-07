@@ -52,12 +52,12 @@ export const Todolist = React.memo((props: TodolistType) => {
 
     let taskForTodolist = props.tasks
 
-    if (props.filter === 'completed') {
-        taskForTodolist.filter(el => el.isDone === true)
+    if (props.filter === 'active') {
+        taskForTodolist = props.tasks.filter(el => el.isDone === false)
     }
 
-    if (props.filter === 'active') {
-        taskForTodolist.filter(el => el.isDone === false)
+    if (props.filter === 'completed') {
+        taskForTodolist = props.tasks.filter(el => el.isDone === true)
     }
 
 
