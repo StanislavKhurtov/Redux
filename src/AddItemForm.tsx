@@ -18,7 +18,6 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
         } else {
             setError("Title is requared");
         }
-
     };
 
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
