@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useCallback} from "react";
 import {FilterValueType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditebleSpan} from "./EditebleSpan";
@@ -28,25 +28,27 @@ export type TaskType = {
 }
 
 
-export const Todolist = (props: TodolistType) => {
+export const Todolist = React.memo((props: TodolistType) => {
+    console.log("Todolist called")
 
-    const onAllClickHandler = () => props.changeFilter(props.id, 'all');
-
-    const onActiveClickHandler = () => props.changeFilter(props.id, 'active');
-
-    const onCompletedClickHandler = () => props.changeFilter(props.id, 'completed');
-
-    const removeTodolist = () => {
-        props.removeTodolist(props.id)
-    };
-
-    const addTask = (newTitle: string) => {
+    const addTask = useCallback((newTitle: string) => {
         props.addTask(props.id, newTitle)
-    };
+    },[]);
 
-    const changeTodolistTitle = (newTitle: string) => {
+
+    const onAllClickHandler = useCallback(() => props.changeFilter(props.id, 'all'),[]);
+
+    const onActiveClickHandler = useCallback(() => props.changeFilter(props.id, 'active'),[]);
+
+    const onCompletedClickHandler = useCallback(() => props.changeFilter(props.id, 'completed'),[]);
+
+    const removeTodolist = useCallback(() => {
+        props.removeTodolist(props.id)
+    },[]);
+
+    const changeTodolistTitle = useCallback((newTitle: string) => {
         props.changeTodolistTitle(props.id, newTitle)
-    }
+    },[])
 
 
     return (
@@ -75,7 +77,7 @@ export const Todolist = (props: TodolistType) => {
                         return (
                             <li key={el.id} className={el.isDone ? "isDone" : ''}>
                                 <Checkbox checked={el.isDone}
-                                       onChange={onChangeHandler}/>
+                                          onChange={onChangeHandler}/>
                                 <EditebleSpan title={el.title} onChange={onChangeTitleHandler}/>
                                 <IconButton size="small" onClick={removeTask}>
                                     <Delete />
@@ -92,6 +94,6 @@ export const Todolist = (props: TodolistType) => {
             </div>
         </div>
     );
-}
+})
 
 

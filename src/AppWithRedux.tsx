@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import './App.css';
 import {TaskType, Todolist} from "./Todolist";
 import {AddItemForm} from "./AddItemForm";
@@ -37,38 +37,38 @@ export const AppWithRedux = () => {
     const dispatch = useDispatch();
 
 
-    const removeTask = (todolistID: string, id: string) => {
+    const removeTask = useCallback((todolistID: string, id: string) => {
         dispatch(removeTaskAC(todolistID, id));
-    };
+    },[]);
 
-    const addTask = (todolistID: string, title: string) => {
+    const addTask = useCallback((todolistID: string, title: string) => {
         dispatch(addTaskAC(todolistID, title));
-    };
+    },[]);
 
-    const changeTaskTitle = (todolistId: string, id: string, newValue: string) => {
+    const changeTaskTitle = useCallback((todolistId: string, id: string, newValue: string) => {
         dispatch(changeTaskTitleAC(todolistId, id, newValue));
-    };
+    },[]);
 
-    const changeStatus = (todolistID: string, taskId: string, isDone: boolean) => {
+    const changeStatus = useCallback((todolistID: string, taskId: string, isDone: boolean) => {
         dispatch(changeTaskStatusAC(todolistID, taskId, isDone));
-    };
+    },[]);
 
 
-    const removeTodolist = (todolistId: string) => {
+    const removeTodolist = useCallback((todolistId: string) => {
         dispatch(removeTodolistAC(todolistId));
-    };
+    },[]);
 
-    const addTodolist = (title: string) => {
+    const addTodolist = useCallback((title: string) => {
         dispatch(addTodolistAC(title));
-    };
+    },[]);
 
-    const changeTodolistTitle = (todolistId: string, newTitle: string) => {
+    const changeTodolistTitle = useCallback((todolistId: string, newTitle: string) => {
         dispatch(changeTodolistTitleAC(todolistId, newTitle));
-    };
+    },[]);
 
-    const changeFilter = (todolistID: string, value: FilterValueType) => {
+    const changeFilter = useCallback((todolistID: string, value: FilterValueType) => {
         dispatch(changeTodolistFilterAC(todolistID, value));
-    };
+    },[]);
 
 
     return (
