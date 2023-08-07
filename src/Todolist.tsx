@@ -33,22 +33,22 @@ export const Todolist = React.memo((props: TodolistType) => {
 
     const addTask = useCallback((newTitle: string) => {
         props.addTask(props.id, newTitle)
-    },[]);
+    }, []);
 
 
-    const onAllClickHandler = useCallback(() => props.changeFilter(props.id, 'all'),[]);
+    const onAllClickHandler = useCallback(() => props.changeFilter(props.id, 'all'), []);
 
-    const onActiveClickHandler = useCallback(() => props.changeFilter(props.id, 'active'),[]);
+    const onActiveClickHandler = useCallback(() => props.changeFilter(props.id, 'active'), []);
 
-    const onCompletedClickHandler = useCallback(() => props.changeFilter(props.id, 'completed'),[]);
+    const onCompletedClickHandler = useCallback(() => props.changeFilter(props.id, 'completed'), []);
 
     const removeTodolist = useCallback(() => {
         props.removeTodolist(props.id)
-    },[]);
+    }, []);
 
     const changeTodolistTitle = useCallback((newTitle: string) => {
         props.changeTodolistTitle(props.id, newTitle)
-    },[])
+    }, [])
 
 
     return (
@@ -56,7 +56,7 @@ export const Todolist = React.memo((props: TodolistType) => {
             <h3 className={"todolistTitle"}>
                 <EditebleSpan title={props.title} onChange={changeTodolistTitle}/>
                 <IconButton size="small" onClick={removeTodolist}>
-                    <Delete />
+                    <Delete/>
                 </IconButton>
             </h3>
             <AddItemForm addItem={addTask}/>
@@ -80,7 +80,7 @@ export const Todolist = React.memo((props: TodolistType) => {
                                           onChange={onChangeHandler}/>
                                 <EditebleSpan title={el.title} onChange={onChangeTitleHandler}/>
                                 <IconButton size="small" onClick={removeTask}>
-                                    <Delete />
+                                    <Delete/>
                                 </IconButton>
                             </li>
                         );
@@ -88,9 +88,11 @@ export const Todolist = React.memo((props: TodolistType) => {
                 </ul>
             </div>
             <div className={'btns'}>
-                <Button variant={props.filter === 'all' ? 'contained' : "text"}  onClick={onAllClickHandler}>All</Button>
-                <Button color={"primary"} variant={props.filter === 'active' ? 'contained' : "text"} onClick={onActiveClickHandler}>Active</Button>
-                <Button color={"secondary"} variant={props.filter === 'completed' ? 'contained' : "text"} onClick={onCompletedClickHandler}>Completed</Button>
+                <Button variant={props.filter === 'all' ? 'contained' : "text"} onClick={onAllClickHandler}>All</Button>
+                <Button color={"primary"} variant={props.filter === 'active' ? 'contained' : "text"}
+                        onClick={onActiveClickHandler}>Active</Button>
+                <Button color={"secondary"} variant={props.filter === 'completed' ? 'contained' : "text"}
+                        onClick={onCompletedClickHandler}>Completed</Button>
             </div>
         </div>
     );
