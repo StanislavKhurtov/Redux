@@ -29,7 +29,6 @@ export type ChangeTaskStatusActionType = {
     isDone: boolean
 }
 
-
 type ActionType =
     RemoveTaskActionType
     | AddTaskActionType
@@ -38,8 +37,9 @@ type ActionType =
     | AddTodolistActionType
     | RemoveTodolistActionType;
 
+const initialState: TasksStateType ={};
 
-export const tasksReducer = (state: TasksStateType, action: ActionType): TasksStateType => {
+export const tasksReducer = (state: TasksStateType = initialState, action: ActionType): TasksStateType => {
     switch (action.type) {
         case 'REMOVE-TASK':
             return {...state, [action.todolistId]: state[action.todolistId].filter(el => el.id !== action.taskId)}
@@ -64,12 +64,17 @@ export const tasksReducer = (state: TasksStateType, action: ActionType): TasksSt
                     isDone: action.isDone
                 } : el)
             }
-        case 'ADD-TODOLIST':
-            return {...state, [action.todolistId]: []}
-        case 'REMOVE-TODOLIST':
-            const stateCopy = {...state}
-            delete stateCopy[action.id]
+        case 'ADD-TODOLIST': {
+            const stateCopy = {...state};
+            stateCopy[action.todolistId] = [];
             return stateCopy;
+        }
+
+        case 'REMOVE-TODOLIST': {
+            const stateCopy = {...state};
+            delete stateCopy[action.id];
+            return stateCopy;
+        }
         default:
             return state;
     }
