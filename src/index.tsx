@@ -5,4 +5,6 @@ import {AppWithReducers} from "./AppWithReducers";
 
 
 
-ReactDOM.render(<AppWithReducers />, document.getElementById('root'));
+ReactDOM.render(
+    <AppWithReducers />,
+    document.getElementById('root'));
