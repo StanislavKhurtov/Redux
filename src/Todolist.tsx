@@ -33,14 +33,14 @@ export const Todolist = React.memo((props: TodolistType) => {
 
     const addTask = useCallback((newTitle: string) => {
         props.addTask(props.id, newTitle)
-    }, []);
+    }, [props.addTask,props.id]);
 
 
-    const onAllClickHandler = useCallback(() => props.changeFilter(props.id, 'all'), []);
+    const onAllClickHandler = useCallback(() => props.changeFilter(props.id, 'all'), [props.changeFilter, props.id]);
 
-    const onActiveClickHandler = useCallback(() => props.changeFilter(props.id, 'active'), []);
+    const onActiveClickHandler = useCallback(() => props.changeFilter(props.id, 'active'), [props.changeFilter, props.id]);
 
-    const onCompletedClickHandler = useCallback(() => props.changeFilter(props.id, 'completed'), []);
+    const onCompletedClickHandler = useCallback(() => props.changeFilter(props.id, 'completed'), [props.changeFilter, props.id]);
 
     const removeTodolist = useCallback(() => {
         props.removeTodolist(props.id)
